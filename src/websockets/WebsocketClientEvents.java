@@ -113,8 +113,8 @@ public class WebsocketClientEvents {
 	 */
 	@OnWebSocketError
 	public void onError(Throwable cause) {
-		System.out.printf("onError(%s: %s)%n",cause.getClass().getSimpleName(), cause.getMessage());
-		cause.printStackTrace(System.out);
+//		System.out.printf("onError(%s: %s)%n",cause.getClass().getSimpleName(), cause.getMessage());
+//		cause.printStackTrace(System.out);
 
 		if (onErrorEvent != null) {
 			try {
