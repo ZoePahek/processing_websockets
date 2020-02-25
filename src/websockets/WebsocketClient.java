@@ -48,7 +48,7 @@ public class WebsocketClient {
 			webSocketEvent = callbacks.getClass().getMethod("webSocketEvent",
 					String.class);
 			webSocketEventBinary = callbacks.getClass().getMethod("webSocketEvent", byte[].class, int.class, int.class);
-			webSocketOnError = callbacks.getClass().getMethod("webSocketOnError", Throwable cause);
+			webSocketOnError = callbacks.getClass().getMethod("webSocketOnError", Throwable.class);
 		} catch (Exception e) {
 			// no such method, or an error.. which is fine, just ignore
 		}
