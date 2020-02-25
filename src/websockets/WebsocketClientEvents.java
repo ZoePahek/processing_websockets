@@ -25,11 +25,13 @@ public class WebsocketClientEvents {
 	private Object parent;
 	private Method onMessageEvent;
 	private Method onMessageEventBinary;
+	private Method onErrorEvent;
 
-	public WebsocketClientEvents(Object p, Method event, Method eventBinary) {
+	public WebsocketClientEvents(Object p, Method event, Method eventBinary, Method error) {
 		parent = p;
 		onMessageEvent = event;
 		onMessageEventBinary = eventBinary;
+		onErrorEvent = error;
 	}
 
 	/**
@@ -113,6 +115,17 @@ public class WebsocketClientEvents {
 	public void onError(Throwable cause) {
 		System.out.printf("onError(%s: %s)%n",cause.getClass().getSimpleName(), cause.getMessage());
 		cause.printStackTrace(System.out);
+
+		if (onErrorEvent != null) {
+			try {
+				onErrorEvent.invoke(parent, cause);
+			} catch (Exception e) {
+				System.err
+						.println("Disabling webSocketOnError() because of an error.");
+				e.printStackTrace();
+				onErrorEvent = null;
+			}
+		}
 	}
 
 	public CountDownLatch getLatch() {
