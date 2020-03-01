@@ -58,6 +58,7 @@ public class WebsocketClient {
 
 		WebSocketClient client = null;
 
+		// Commented out because deprecated.
 //		if(endpointURI.startsWith("wss")) {
 //			SslContextFactory ssl = new SslContextFactory();
 //			client = new WebSocketClient(ssl);
@@ -73,11 +74,16 @@ public class WebsocketClient {
 			URI echoUri = new URI(endpointURI);
 			ClientUpgradeRequest request = new ClientUpgradeRequest();
 			client.connect(socket, echoUri, request);
-			socket.getLatch().await();
-
 		} catch (Throwable t) {
-			t.printStackTrace();
+			throw new RuntimeException();
 		}
+
+		// This is causing the sketch to hang if the connection fails.
+//		try {
+//			socket.getLatch().await();
+//		} catch (InterruptedException e) {
+//			// Ignore.
+//		}
 	}
 
 	/**
