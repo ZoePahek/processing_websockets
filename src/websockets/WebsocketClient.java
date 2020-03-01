@@ -64,6 +64,7 @@ public class WebsocketClient {
 //		} else {
 //			client = new WebSocketClient();
 //		}
+		client = new WebSocketClient();
 
 		try {
 			socket = new WebsocketClientEvents(callbacks, webSocketEvent,
