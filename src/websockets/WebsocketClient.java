@@ -45,12 +45,16 @@ public class WebsocketClient {
 		parent.registerMethod("dispose", this);
 
 		try {
-			webSocketEvent = callbacks.getClass().getMethod("webSocketEvent",
-					String.class);
-			webSocketEventBinary = callbacks.getClass().getMethod("webSocketEvent", byte[].class, int.class, int.class);
+			webSocketEvent = callbacks.getClass().getMethod("webSocketEvent", String.class);
 			webSocketOnError = callbacks.getClass().getMethod("webSocketOnError", Throwable.class);
 		} catch (Exception e) {
-			// no such method, or an error.. which is fine, just ignore
+			e.printStackTrace();
+		}
+
+		try {
+			webSocketEventBinary = callbacks.getClass().getMethod("webSocketEvent", byte[].class, int.class, int.class);
+		} catch (Exception e){
+			// This Method is optional. Ignore if it doesn't exist.
 		}
 
 		WebSocketClient client = null;

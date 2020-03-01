@@ -27,11 +27,11 @@ public class WebsocketClientEvents {
 	private Method onMessageEventBinary;
 	private Method onErrorEvent;
 
-	public WebsocketClientEvents(Object p, Method event, Method eventBinary, Method error) {
+	public WebsocketClientEvents(Object p, Method event, Method eventBinary, Method eventError) {
 		parent = p;
 		onMessageEvent = event;
 		onMessageEventBinary = eventBinary;
-		onErrorEvent = error;
+		onErrorEvent = eventError;
 	}
 
 	/**
