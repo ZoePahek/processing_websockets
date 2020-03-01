@@ -40,8 +40,7 @@ public class WebsocketClient {
 	 * @param callbacks The object implementing .webSocketEvent()
 	 * @param endpointURI The URI to connect to Ex. ws://localhost:8025/john
 	 */
-	public WebsocketClient(PApplet parent, Object callbacks,
-						   String endpointURI) {
+	public WebsocketClient(PApplet parent, Object callbacks, String endpointURI) {
 		parent.registerMethod("dispose", this);
 
 		try {
@@ -59,12 +58,12 @@ public class WebsocketClient {
 
 		WebSocketClient client = null;
 
-		if(endpointURI.startsWith("wss")) {
-			SslContextFactory ssl = new SslContextFactory();
-			client = new WebSocketClient(ssl);
-		} else {
-			client = new WebSocketClient();
-		}
+//		if(endpointURI.startsWith("wss")) {
+//			SslContextFactory ssl = new SslContextFactory();
+//			client = new WebSocketClient(ssl);
+//		} else {
+//			client = new WebSocketClient();
+//		}
 
 		try {
 			socket = new WebsocketClientEvents(callbacks, webSocketEvent,
